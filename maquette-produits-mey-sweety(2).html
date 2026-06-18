@@ -1,0 +1,247 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mey Sweety – Maquette page produits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FBF6EE;--paper-2:#F4E9DA;--ink:#2C201A;--soft:#6B5849;
+    --clay:#A8472A;--clay-deep:#8A381F;--ochre:#D98A2B;--paprika:#B5341F;
+    --line:#E4D7C4;--card:#FFFDF9;--radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+
+  .ribbon{background:var(--ink);color:var(--paper);text-align:center;font-size:.78rem;letter-spacing:.04em;padding:7px 14px}
+  .ribbon b{color:var(--ochre)}
+
+  nav{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:20px 24px}
+  .brand{font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;color:var(--clay-deep)}
+  .brand span{color:var(--ochre)}
+  .nav-links{display:flex;gap:26px;font-size:.93rem;font-weight:500}
+  .nav-links a{text-decoration:none;color:var(--soft)}
+  .nav-links a.active,.nav-links a:hover{color:var(--clay)}
+  @media(max-width:680px){.nav-links{display:none}}
+
+  .intro{max-width:1120px;margin:0 auto;padding:34px 24px 8px;text-align:center}
+  .eyebrow{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);font-weight:700;margin-bottom:14px}
+  .intro h1{font-family:"Fraunces",serif;font-weight:600;line-height:1.04;font-size:clamp(2.2rem,6vw,3.4rem);margin:0 0 16px}
+  .intro p{max-width:58ch;margin:0 auto;color:var(--soft);font-size:1.06rem}
+
+  .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:1120px;margin:30px auto 0;padding:0 24px}
+  .chip{font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;padding:9px 18px;transition:all .15s}
+  .chip:hover{border-color:var(--ochre);color:var(--clay)}
+  .chip.active{background:var(--clay);border-color:var(--clay);color:#fff}
+
+  .grid{max-width:1120px;margin:28px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(44,32,26,.12)}
+
+  .photo{position:relative;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .photo .jar{width:54px;height:54px;opacity:.55;z-index:0}
+  .photo .ph-tag{display:none;position:absolute;bottom:10px;left:10px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,253,249,.85);color:var(--soft);padding:4px 9px;border-radius:6px;font-weight:600;z-index:1}
+  .photo.noimg img{display:none}
+  .photo.noimg .ph-tag{display:block}
+  .fete{position:absolute;top:10px;right:10px;z-index:2;background:var(--ochre);color:var(--ink);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+  .ph-1{background:linear-gradient(135deg,#E7C8A0,#C98A4E)}
+  .ph-2{background:linear-gradient(135deg,#E9B48C,#B5532A)}
+  .ph-3{background:linear-gradient(135deg,#D98A2B,#8A381F)}
+  .ph-4{background:linear-gradient(135deg,#CDA77B,#A8472A)}
+  .ph-5{background:linear-gradient(135deg,#E0A030,#B5341F)}
+  .ph-6{background:linear-gradient(135deg,#C98A4E,#7A2E18)}
+
+  .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+  .cat{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);font-weight:700;margin-bottom:7px}
+  .card h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.26rem;margin:0 0 4px;color:var(--ink)}
+  .heat{display:flex;align-items:center;gap:5px;margin:2px 0 10px;font-size:.74rem;color:var(--soft)}
+  .heat .pepper{width:12px;height:12px}
+  .heat .pepper.off{opacity:.22}
+  .card p{margin:0 0 16px;color:var(--soft);font-size:.92rem;flex:1}
+  .card-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto}
+  .price{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;color:var(--clay-deep)}
+  .price small{display:block;font-family:"Hanken Grotesk";font-weight:400;font-size:.68rem;color:var(--soft)}
+  .order{font:inherit;font-weight:600;font-size:.88rem;cursor:pointer;border:none;background:var(--clay);color:#fff;border-radius:9px;padding:10px 15px;transition:filter .15s;white-space:nowrap}
+  .order:hover{filter:brightness(1.08)}
+
+  .pro{background:var(--ink);color:var(--paper);margin-top:60px}
+  .pro-in{max-width:1120px;margin:0 auto;padding:46px 24px;display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+  .pro-in .txt{flex:1;min-width:260px}
+  .pro-in .eyebrow{color:var(--ochre)}
+  .pro-in h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.8rem;margin:0 0 10px}
+  .pro-in p{color:#D8C8B8;margin:0;max-width:52ch}
+  .pro-in a.btn{background:var(--ochre);color:var(--ink);text-decoration:none;font-weight:700;padding:14px 24px;border-radius:10px;white-space:nowrap}
+
+  .commander{max-width:680px;margin:0 auto;padding:60px 24px 30px;text-align:center}
+  .commander h2{font-family:"Fraunces",serif;font-weight:600;font-size:2rem;margin:0 0 8px}
+  .commander > p{color:var(--soft);margin:0 auto 28px;max-width:48ch}
+  .formcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;text-align:left;box-shadow:0 10px 30px rgba(44,32,26,.06)}
+  .formrow{margin-bottom:16px}
+  .formrow label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+  .formcard input,.formcard textarea{width:100%;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+  .formcard textarea{min-height:96px;resize:vertical}
+  .formcard input:focus,.formcard textarea:focus{outline:3px solid rgba(217,138,43,.35);border-color:var(--ochre)}
+  .send{width:100%;font:inherit;font-weight:700;font-size:1rem;cursor:pointer;border:none;background:var(--clay);color:#fff;border-radius:10px;padding:14px;margin-top:4px;transition:filter .15s}
+  .send:hover{filter:brightness(1.08)}
+  .sent-note{display:none;color:var(--clay-deep);font-weight:600;margin-top:14px;text-align:center}
+  .sent-note.show{display:block}
+  .reassure{font-size:.82rem;color:var(--soft);text-align:center;margin-top:14px}
+
+  footer{border-top:1px solid var(--line);margin-top:40px}
+  .foot-in{max-width:1120px;margin:0 auto;padding:26px 24px;text-align:center;color:var(--soft);font-size:.84rem}
+  .foot-in .brand{font-size:1.15rem;margin-bottom:6px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="ribbon">Maquette de pr&eacute;sentation TakeASite &middot; <b>vos vrais produits, mise en page &agrave; valider</b></div>
+
+<nav>
+  <div class="brand">Mey <span>Sweety</span></div>
+  <div class="nav-links">
+    <a href="#">Accueil</a>
+    <a href="#" class="active">Produits</a>
+    <a href="#">Notre histoire</a>
+    <a href="#commander">Contact</a>
+  </div>
+</nav>
+
+<section class="intro">
+  <div class="eyebrow">Produits artisanaux fran&ccedil;ais aux saveurs africaines</div>
+  <h1>Nos produits</h1>
+  <p>D&rsquo;origine togolaise, j&rsquo;ai &agrave; c&oelig;ur de vous faire voyager. Mes marinades, mon louga et mes piments noirs sont cuisin&eacute;s en petites s&eacute;ries, &agrave; base de produits locaux fran&ccedil;ais et naturels. Choisissez vos produits, je reviens vers vous rapidement pour la commande.</p>
+</section>
+
+<div class="filters" id="filters">
+  <button class="chip active" data-cat="all">Tout voir</button>
+  <button class="chip" data-cat="marinade">Marinades</button>
+  <button class="chip" data-cat="louga">Louga</button>
+  <button class="chip" data-cat="piment">Piments</button>
+</div>
+
+<section class="grid" id="grid"></section>
+
+<section class="pro">
+  <div class="pro-in">
+    <div class="txt">
+      <div class="eyebrow">Vous &ecirc;tes un professionnel du go&ucirc;t ?</div>
+      <h2>&Eacute;piceries fines, restaurateurs, traiteurs</h2>
+      <p>Des produits authentiques et diff&eacute;renciants pour enrichir votre offre. &Eacute;piceries, restaurateurs, bouchers, traiteurs et comit&eacute;s d&rsquo;entreprise : parlons de votre projet.</p>
+    </div>
+    <a href="#commander" class="btn">Demander une offre pro</a>
+  </div>
+</section>
+
+<section class="commander" id="commander">
+  <h2>Commander ou poser une question</h2>
+  <p>Indiquez le produit qui vous int&eacute;resse, je reviens vers vous rapidement.</p>
+  <div class="formcard">
+    <div class="formrow"><label for="c-nom">Votre nom</label><input type="text" id="c-nom" placeholder="Pr&eacute;nom et nom"></div>
+    <div class="formrow"><label for="c-mail">Email</label><input type="email" id="c-mail" placeholder="vous@email.fr"></div>
+    <div class="formrow"><label for="c-prod">Produit souhait&eacute;</label><input type="text" id="c-prod" placeholder="Ex : Marinade La Togolaise"></div>
+    <div class="formrow"><label for="c-msg">Votre message</label><textarea id="c-msg" placeholder="Quantit&eacute;, questions, demande particuli&egrave;re..."></textarea></div>
+    <button class="send" id="sendBtn">Envoyer ma demande</button>
+    <div class="sent-note" id="sentNote">Merci, votre demande est bien prise en compte (maquette de d&eacute;monstration).</div>
+    <p class="reassure">R&eacute;ponse rapide &middot; aucune commande ferme &agrave; ce stade</p>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div class="brand">Mey <span style="color:var(--ochre)">Sweety</span></div>
+    Produits artisanaux &middot; Nort-sur-Erdre (44)<br>
+    06 23 07 77 85 &middot; jesska.crea@gmail.com<br>
+    <span style="font-size:.78rem">Maquette r&eacute;alis&eacute;e par TakeASite</span>
+  </div>
+</footer>
+
+<script>
+  const IMG = "https://www.mmeysweety.com/wp-content/uploads/";
+  const pepper = (cls) => `<svg class="pepper ${cls}" viewBox="0 0 24 24" fill="#B5341F" xmlns="http://www.w3.org/2000/svg"><path d="M6 16c0 3 2.5 5 5.5 5S20 18 20 12c0-3-1-5-2.5-5.5C18.8 6 19.5 4.8 19.5 3.5a1 1 0 0 0-2 0c0 1-.6 1.8-1.6 2.1C14.7 4.6 13 4 11 4 8 4 6 6 6 9c0 1.2.3 2.2.8 3C5.7 12.8 5 14.3 6 16Z"/></svg>`;
+  const jar = `<svg class="jar" viewBox="0 0 24 24" fill="none" stroke="#FFFDF9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M9 2v2.5C9 5.5 7 6.5 7 9v11a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9c0-2.5-2-3.5-2-4.5V2"/><path d="M7 12h10"/></svg>`;
+
+  function heatScale(level){
+    if(!level) return '';
+    let s = '<div class="heat"><span>Intensit&eacute;</span>';
+    for(let i=1;i<=3;i++) s += pepper(i<=level ? 'on' : 'off');
+    s += '</div>';
+    return s;
+  }
+
+  const products = [
+    {cat:'marinade', ph:'ph-1', img:'2026/01/PXL_20260108_152113324.PORTRAIT-1-scaled.jpg', name:'Comme chez maman', heat:1, price:'7,90&nbsp;&euro;', unit:'le pot de 175g',
+     desc:'Douce et familiale : ail, fenouil, persil, anis, poivre 5 baies. Parfaite pour viandes blanches, poisson, l&eacute;gumes, tartes et sauces.'},
+    {cat:'marinade', ph:'ph-2', img:'2026/01/PXL_20260108_152402712.PORTRAIT-scaled.jpg', name:'La Togolaise', heat:2, price:'7,90&nbsp;&euro;', unit:'le pot de 185g',
+     desc:'Gingembre, oignon, ail, anis. Une force pr&eacute;cise pour les amateurs d&rsquo;&eacute;pices, sur viandes, poissons et sauces mijot&eacute;es.'},
+    {cat:'marinade', ph:'ph-3', img:'2026/01/PXL_20260108_151629381.PORTRAIT-scaled.jpg', name:'Caract&egrave;re', heat:3, price:'7,90&nbsp;&euro;', unit:'le pot de 175g',
+     desc:'Fort caract&egrave;re (graine d&rsquo;akpi, poivre de Penja). Pour viandes rouges, gibier, p&acirc;t&eacute;s et terrines.'},
+    {cat:'marinade', ph:'ph-4', img:'2026/01/PXL_20260108_150556914.PORTRAIT-scaled.jpg', name:'La V&eacute;g&eacute;tale', heat:1, price:'7,90&nbsp;&euro;', unit:'le pot de 175g',
+     desc:'Tout en douceur : poivron, piment vert, persil. Pl&eacute;biscit&eacute;e par les v&eacute;gans comme les non-v&eacute;gans.'},
+    {cat:'marinade', ph:'ph-6', img:'2026/01/PXL_20260108_145133917.PORTRAIT.ORIGINAL-scaled.jpg', name:'La Mixit&eacute;', heat:1, price:'7,90&nbsp;&euro;', unit:'le pot de 175g', fete:true,
+     desc:'Un go&ucirc;t d&rsquo;Afrique et d&rsquo;Europe qui rassemble, id&eacute;ale pour vos plats de tous les jours.'},
+    {cat:'marinade', ph:'ph-5', img:'2026/01/PXL_20260108_150217405.PORTRAIT-scaled.jpg', name:'Joie #Partage', heat:1, price:'7,90&nbsp;&euro;', unit:'le pot de 175g', fete:true,
+     desc:'L&eacute;g&egrave;rement sucr&eacute;e au curcuma, la pr&eacute;f&eacute;r&eacute;e des enfants. Soupes, tartes, quiches, viandes blanches et poissons.'},
+    {cat:'marinade', ph:'ph-2', img:'2026/01/PXL_20260108_145905986.PORTRAIT-scaled.jpg', name:'Orange &amp; Miel', heat:1, price:'7,90&nbsp;&euro;', unit:'le pot de 185g',
+     desc:'Orange, citron et estragon pour un fini l&eacute;g&egrave;rement caram&eacute;lis&eacute;. Id&eacute;ale sur canard et viandes rouges.'},
+    {cat:'louga', ph:'ph-1', img:'2026/02/PXL_20260110_151256437-scaled.jpg', name:'Louga', heat:0, price:'4&nbsp;&euro;', unit:'le sachet de 150g',
+     desc:'Sucrerie togolaise &agrave; base de cacahu&egrave;tes et de caramel, un go&ucirc;t de nougatine. Id&eacute;ale pour surprendre vos invit&eacute;s.'},
+    {cat:'piment', ph:'ph-3', img:'2026/02/PXL_20260218_095509728-scaled.jpg', name:'Piment Noir N&deg;1', heat:2, price:'&Agrave; confirmer', unit:'le pot de 180g',
+     desc:'V&eacute;gan : oignons caram&eacute;lis&eacute;s, piments s&eacute;ch&eacute;s, gingembre. Polyvalent, une cuill&egrave;re dans le riz, les p&acirc;tes ou vos pr&eacute;parations.'},
+    {cat:'piment', ph:'ph-5', img:'2026/02/PXL_20260218_095509728-scaled.jpg', name:'Piment Noir intense N&deg;2', heat:3, price:'&Agrave; confirmer', unit:'le pot de 180g',
+     desc:'Piments rouges s&eacute;ch&eacute;s, poisson fum&eacute;, oignons, gingembre. Intense sans br&ucirc;ler le palais, elle remplace la sauce tomate des amateurs.'},
+    {cat:'piment', ph:'ph-6', img:'2026/02/PXL_20260218_095509728-scaled.jpg', name:'Piment Noir N&deg;3', heat:2, price:'&Agrave; confirmer', unit:'le pot de 180g',
+     desc:'Piments rouges s&eacute;ch&eacute;s, oignons, poisson fum&eacute;. Intens&eacute;ment douce, elle invite &agrave; y retourner.'},
+  ];
+
+  const CATLABEL = {marinade:'Marinade', louga:'Louga', piment:'Piment Noir'};
+
+  function render(filter){
+    const grid = document.getElementById('grid');
+    grid.innerHTML = products
+      .filter(p => filter==='all' || p.cat===filter)
+      .map(p => `
+        <article class="card" data-cat="${p.cat}">
+          <div class="photo ${p.ph}">
+            ${jar}
+            <img src="${IMG}${p.img}" alt="${p.name}" loading="lazy" onerror="this.closest('.photo').classList.add('noimg')">
+            ${p.fete ? '<span class="fete">Gamme f&ecirc;te</span>' : ''}
+            <span class="ph-tag">Photo &agrave; int&eacute;grer</span>
+          </div>
+          <div class="card-body">
+            <div class="cat">${CATLABEL[p.cat]}</div>
+            <h3>${p.name}</h3>
+            ${heatScale(p.heat)}
+            <p>${p.desc}</p>
+            <div class="card-foot">
+              <span class="price">${p.price}<small>${p.unit}</small></span>
+              <button class="order" data-name="${p.name}">Commander</button>
+            </div>
+          </div>
+        </article>`).join('');
+    bindOrder();
+  }
+
+  function bindOrder(){
+    document.querySelectorAll('.order').forEach(b=>{
+      b.addEventListener('click',()=>{
+        const tmp = document.createElement('textarea');
+        tmp.innerHTML = b.dataset.name;
+        document.getElementById('c-prod').value = tmp.value;
+        document.getElementById('commander').scrollIntoView({behavior:'smooth'});
+      });
+    });
+  }
+
+  document.getElementById('filters').addEventListener('click',e=>{
+    if(!e.target.classList.contains('chip')) return;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    e.target.classList.add('active');
+    render(e.target.dataset.cat);
+  });
+  document.getElementById('sendBtn').addEventListener('click',()=>{document.getElementById('sentNote').classList.add('show')});
+
+  render('all');
+</script>
